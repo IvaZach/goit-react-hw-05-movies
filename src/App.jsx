@@ -1,31 +1,22 @@
+import MovieDetails from 'page/MovieDetails';
 import Home from 'page/Home';
 import Movies from 'page/Movies';
 import NotFound from 'page/NotFound';
-import { Routes, Route, NavLink } from 'react-router-dom';
-// import Home from "path/to/pages/Home";
-// import About from "path/to/pages/About";
-// import Products from "path/to/pages/Products";
+import { Routes, Route } from 'react-router-dom';
+
+import { AppBar } from 'components/AppBar';
+
+
 
 export const App = () => {
-  return (<>
-    <header>
-      <nav>
-        <ul>
-          <li>
-          <NavLink to='/movies'>Home</NavLink>
-          </li>
-          <li>
-          <NavLink to='/movies/:moviesId'>Movies</NavLink>
-          </li>
-        </ul>
-      </nav>
-    </header>
-    
-
+  return (
+    <>
+      <AppBar/>
 
       <Routes>
-        <Route path="/movies" element={<Home />} />
-        <Route path="/movies/:moviesId" element={<Movies />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/movies/:movieId" element={<MovieDetails />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

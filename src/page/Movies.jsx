@@ -1,5 +1,8 @@
-export default function Movies () {
-
-
-    return <div>MOVIES</div>
+export default function Movies() {
+  return (
+    <div>
+      <input></input>
+      <button>SEARCH</button>
+    </div>
+  );
 }
