@@ -1,4 +1,4 @@
-import MovieDetails from 'page/MovieDetails';
+import MovieDetails from 'page/MovieDetailsPage';
 import Home from 'page/Home';
 import Movies from 'page/Movies';
 import NotFound from 'page/NotFound';

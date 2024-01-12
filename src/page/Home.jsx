@@ -30,7 +30,7 @@ export default function Home() {
   return (
     <div>
       <h1>Trending today</h1>
-      {error && <p>Sorry, something went wrong! Try reloading the page!</p>}
+      {!error && <p>Sorry, something went wrong! Try reloading the page!</p>}
       {loading && <b>Loading data, please wait...</b>}
       {movies.length > 0 && <MoviesList movies={movies} />}
     </div>
