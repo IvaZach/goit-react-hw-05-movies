@@ -8,11 +8,13 @@ export default function Home() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    const controller = new AbortController();
+
     async function getMovies() {
       try {
         setLoading(true);
         setError(false);
-        const fetchedMovies = await moviesApi();
+        const fetchedMovies = await moviesApi(controller.signal);
         setMovies(fetchedMovies);
       } catch (error) {
         setError(true);
@@ -21,6 +23,8 @@ export default function Home() {
       }
     }
     getMovies();
+
+    return () => controller.abort();
   }, []);
 
   return (
