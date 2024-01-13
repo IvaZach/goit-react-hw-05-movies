@@ -1,24 +1,22 @@
-import { MovieDetails } from 'components/MovieDetails';
+import { Case } from 'components/Cast/Cast';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { movieDetailsApi } from 'services/moviesApi';
+import { movieCastApi } from 'services/moviesApi';
+import PropTypes from 'prop-types';
 
-export default function MovieDetailsPage() {
+export const CastPage = () => {
   const { movieId } = useParams();
-  const [movieDetails, setMovieDetails] = useState(null);
+  const [movieCast, setMovieCast] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-
-  console.log(movieId);
 
   useEffect(() => {
     async function getDetailsMovie() {
       try {
         setLoading(true);
         setError(false);
-        const fetchedDetailsMovie = await movieDetailsApi(movieId);
-        console.log(fetchedDetailsMovie);
-        setMovieDetails(fetchedDetailsMovie);
+        const fetchedDetailsMovie = await movieCastApi(movieId);
+        setMovieCast(fetchedDetailsMovie);
       } catch (error) {
         setError(true);
       } finally {
@@ -30,11 +28,13 @@ export default function MovieDetailsPage() {
 
   return (
     <>
-      <button>Go back</button>
       {error && <p>Sorry, something went wrong! Try reloading the page!</p>}
-      {loading && <b>Loading data, please wait...</b>}
-
-      {movieDetails && <MovieDetails movieDetails={movieDetails} />}
+      {loading && <b>Loading movie data, please wait...</b>}
+      {!loading && movieCast && <Case movieCast={movieCast} />}
     </>
   );
-}
+};
+
+CastPage.propTypes = {
+  movieId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+};

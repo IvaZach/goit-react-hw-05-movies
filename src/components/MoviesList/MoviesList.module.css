@@ -1,0 +1,23 @@
+.list {
+  margin: 0 auto 20px 50px;
+  padding-inline-start: 0;
+}
+
+.img {
+  display: block;
+}
+.list__title {
+  margin: 20px auto 20px 0;
+}
+.title {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.title:active {
+  color: orange;
+}
+
+.page__title {
+  margin: 20px auto 20px 50px;
+}

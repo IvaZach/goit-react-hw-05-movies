@@ -1,0 +1,38 @@
+.card{
+    margin: 20px auto 20px 50px;
+   
+  color: black;
+  
+  text-decoration: none;
+}
+
+.about__movie{
+    display: flex;
+  color: black;
+  gap: 20px;
+  text-decoration: none;
+}
+h2{ color: black;
+    font-size: 42px; }
+
+h3{
+    color: black;
+    font-size: 24px; 
+}
+
+h4{
+    color: black;
+    font-size: 16px; 
+}
+
+.genres{
+    display: flex;
+    color: black;
+    gap: 20px;
+    text-decoration: none; 
+    padding-inline-start: 0;
+}
+
+.genre{
+    display: block;
+}
