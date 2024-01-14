@@ -1,7 +1,7 @@
 import { AppBar } from 'components/AppBar/AppBar';
 import { Outlet } from 'react-router-dom';
 
-export const SharedLayout = () => {
+const SharedLayout = () => {
   return (
     <>
       <AppBar />
@@ -10,3 +10,5 @@ export const SharedLayout = () => {
     </>
   );
 };
+
+export default SharedLayout;

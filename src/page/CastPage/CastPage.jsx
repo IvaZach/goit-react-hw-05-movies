@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { movieCastApi } from 'services/moviesApi';
 import PropTypes from 'prop-types';
 
-export const CastPage = () => {
+const CastPage = () => {
   const { movieId } = useParams();
   const [movieCast, setMovieCast] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -38,3 +38,5 @@ export const CastPage = () => {
 CastPage.propTypes = {
   movieId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
+
+export default CastPage;

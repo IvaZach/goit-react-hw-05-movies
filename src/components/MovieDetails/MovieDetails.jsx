@@ -1,22 +1,20 @@
+import { NavLink, Outlet } from 'react-router-dom';
 import css from './MovieDetails.module.css';
 import PropTypes from 'prop-types';
-import { NavLink, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
-
 
 const StyledDetail = styled(NavLink)`
   display: flex;
   color: black;
   gap: 20px;
-  text-decoration: none;
+  /* text-decoration: none; */
 
   &.active {
     color: orange;
   }
 `;
 
-
-export const MovieDetails = ({ movieDetails }) => {
+const MovieDetails = ({ movieDetails }) => {
   const { poster_path, title, vote_average, overview, genres, release_date } =
     movieDetails;
 
@@ -85,3 +83,5 @@ MovieDetails.propTypes = {
     })
   ),
 };
+
+export default MovieDetails;

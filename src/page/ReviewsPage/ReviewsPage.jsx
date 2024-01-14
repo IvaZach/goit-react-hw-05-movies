@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { movieReviewsApi } from 'services/moviesApi';
 import PropTypes from 'prop-types';
 
-export const ReviewsPage = () => {
+const ReviewsPage = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -38,3 +38,5 @@ export const ReviewsPage = () => {
 ReviewsPage.propTypes = {
   movieId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
+
+export default ReviewsPage;
