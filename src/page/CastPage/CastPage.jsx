@@ -8,7 +8,7 @@ const CastPage = () => {
   const { movieId } = useParams();
   const [movieCast, setMovieCast] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function getDetailsMovie() {

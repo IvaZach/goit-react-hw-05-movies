@@ -5,7 +5,7 @@ import css from './AppBar.module.css';
 const StyledLink = styled(NavLink)`
   color: black;
   text-decoration: none;
-  padding-right: 50px;
+  margin-right: 50px;
 
   &.active {
     color: orange;

@@ -28,12 +28,12 @@ export const Case = ({ movieCast }) => {
 };
 
 Case.propTypes = {
-    movieCast: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-        name: PropTypes.string,
-        profile_path: PropTypes.string,
-        character:PropTypes.string,
-      })
-    ),
-  };
+  movieCast: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      name: PropTypes.string,
+      profile_path: PropTypes.string,
+      character: PropTypes.string,
+    })
+  ),
+};

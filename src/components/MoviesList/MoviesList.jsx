@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import css from './MoviesList.module.css';
 import styled from 'styled-components';
@@ -11,6 +11,8 @@ const StyledName = styled(NavLink)`
 `;
 
 export const MoviesList = ({ movies }) => {
+  const location = useLocation();
+
   return (
     <div>
       <h1 className={css.page__title}>Trending today</h1>
@@ -18,7 +20,7 @@ export const MoviesList = ({ movies }) => {
         {movies.map(({ id, poster_path, title }) => {
           return (
             <li key={id} className={css.list__title}>
-              <StyledName to={`movies/${id}`}>
+              <StyledName to={`movies/${id}`} state={{ from: location }}>
                 <img
                   src={
                     poster_path
@@ -30,7 +32,6 @@ export const MoviesList = ({ movies }) => {
                 />
                 <h3 className={css.title}>{title}</h3>
               </StyledName>
-              
             </li>
           );
         })}

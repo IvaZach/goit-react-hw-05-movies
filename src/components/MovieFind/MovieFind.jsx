@@ -1,17 +1,18 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import css from './MovieFind.module.css';
 
 const StyledName = styled(NavLink)`
   color: black;
-  
-  &.active {
+
+  &:active {
     color: orange;
   }
 `;
 
 const MovieFind = ({ movieList }) => {
+  const location = useLocation();
+
   return (
     <>
       <hr />
@@ -19,7 +20,9 @@ const MovieFind = ({ movieList }) => {
         {movieList.map(({ id, original_title }) => {
           return (
             <li key={id}>
-              <StyledName to={`${id}`}><p className={css.original__title}>{original_title}</p></StyledName>
+              <StyledName to={`${id}`} state={{ from: location }}>
+                {original_title}
+              </StyledName>
             </li>
           );
         })}
@@ -29,14 +32,12 @@ const MovieFind = ({ movieList }) => {
 };
 
 MovieFind.propTypes = {
-    movieList: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-        original_title: PropTypes.string,
-        
-      })
-    ),
-  };
-
+  movieList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      original_title: PropTypes.string,
+    })
+  ),
+};
 
 export default MovieFind;

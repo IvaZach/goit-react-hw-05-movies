@@ -1,15 +1,15 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import css from './MovieDetails.module.css';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Suspense } from 'react';
 
 const StyledDetail = styled(NavLink)`
   display: flex;
   color: black;
   gap: 20px;
-  /* text-decoration: none; */
 
-  &.active {
+  &:active {
     color: orange;
   }
 `;
@@ -20,6 +20,8 @@ const MovieDetails = ({ movieDetails }) => {
 
   const dateObj = new Date();
   const year = dateObj.getUTCFullYear(release_date);
+
+  const location = useLocation();
 
   return (
     <div className={css.card}>
@@ -59,13 +61,22 @@ const MovieDetails = ({ movieDetails }) => {
       <h4>Additional information</h4>
       <ul>
         <li>
-          <StyledDetail to="cast">Cast</StyledDetail>
+          <StyledDetail to="cast" state={location?.state?.from}>
+            Cast
+          </StyledDetail>
         </li>
         <li>
-          <StyledDetail to="reviews">Reviews</StyledDetail>
+          <StyledDetail
+            to="reviews"
+            state={location?.state && location?.state.from}
+          >
+            Reviews
+          </StyledDetail>
         </li>
       </ul>
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };

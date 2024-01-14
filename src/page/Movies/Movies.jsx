@@ -5,22 +5,21 @@ import { movieSearch } from 'services/moviesApi';
 import css from './Movies.module.css';
 
 export default function Movies() {
-  const [movieList, setMovieList] = useState(null);
-
+  const [movieList, setMovieList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const movie = searchParams.get('movieName') ?? '';
+  const queryMovie = searchParams.get('queryMovie') ?? '';
 
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
 
-  console.log('movie:', movie);
+  console.log('queryMovie:', queryMovie);
 
   useEffect(() => {
     async function fetchMovieList() {
       try {
         setLoading(true);
         setError(false);
-        const movieList = await movieSearch(movie);
+        const movieList = await movieSearch(queryMovie);
         setMovieList(movieList);
       } catch (error) {
         setError(true);
@@ -29,26 +28,30 @@ export default function Movies() {
       }
     }
     fetchMovieList();
-  }, [movie]);
+  }, [queryMovie]);
 
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
+    const movieValue = form.elements.queryMovie.value;
+    if (movieValue === '') {
+      return setSearchParams({});
+    }
+    setSearchParams({ queryMovie: movieValue });
 
-    setSearchParams({ movieName: form.elements.movieName.value });
     form.reset();
   };
 
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <input type="text" name="movieName" className={css.input__text} />
+        <input type="text" name="queryMovie" className={css.input__text} />
         <button className={css.button__search}>SEARCH</button>
       </form>
 
       {error && <p>Sorry, something went wrong! Try reloading the page!</p>}
       {loading && <b>Loading movie data, please wait...</b>}
-      {!loading && movie && <MovieFind movieList={movieList} />}
+      {!loading && queryMovie && <MovieFind movieList={movieList} />}
     </>
   );
 }

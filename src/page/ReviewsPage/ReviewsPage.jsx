@@ -8,7 +8,7 @@ const ReviewsPage = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function getDetailsMovie() {

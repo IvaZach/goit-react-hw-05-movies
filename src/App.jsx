@@ -1,12 +1,15 @@
 import { Routes, Route } from 'react-router-dom';
-import Home from 'page/Home/Home';
-import Movies from 'page/Movies/Movies';
-import NotFound from 'page/NotFound/NotFound';
-import MovieDetailsPage from 'page/MovieDetailsPage/MovieDetailsPage';
-import CastPage from 'page/CastPage/CastPage';
-import ReviewsPage from 'page/ReviewsPage/ReviewsPage';
-import SharedLayout from 'components/SharedLayout/SharedLayout';
+import { lazy } from 'react';
+import SharedLayout from './components/SharedLayout/SharedLayout';
 
+const Home = lazy(() => import('./page/Home/Home'));
+const Movies = lazy(() => import('./page/Movies/Movies'));
+const NotFound = lazy(() => import('./page/NotFound/NotFound'));
+const MovieDetailsPage = lazy(() =>
+  import('./page/MovieDetailsPage/MovieDetailsPage')
+);
+const CastPage = lazy(() => import('./page/CastPage/CastPage'));
+const ReviewsPage = lazy(() => import('./page/ReviewsPage/ReviewsPage'));
 
 export const App = () => {
   return (
@@ -14,9 +17,7 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
-          <Route path="movies" element={<Movies />}>
-            
-          </Route>
+          <Route path="movies" element={<Movies />}></Route>
 
           <Route path="movies/:movieId" element={<MovieDetailsPage />}>
             <Route path="cast" element={<CastPage />} />
