@@ -16,7 +16,7 @@ const MovieFind = ({ movieList }) => {
   return (
     <>
       <hr />
-      <ul>
+      {movieList.length > 0 ? <ul>
         {movieList.map(({ id, original_title }) => {
           return (
             <li key={id}>
@@ -26,7 +26,8 @@ const MovieFind = ({ movieList }) => {
             </li>
           );
         })}
-      </ul>
+      </ul> : <p>Sorry, nothing was found for your search. Try to change the query</p>  }
+      
     </>
   );
 };

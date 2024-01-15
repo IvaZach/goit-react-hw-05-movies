@@ -4,25 +4,29 @@ export const Case = ({ movieCast }) => {
   return (
     <>
       <hr />
-      <ul>
-        {movieCast.map(({ id, name, profile_path, character }) => {
-          return (
-            <li key={id}>
-              <img
-                src={
-                  profile_path
-                    ? `https://image.tmdb.org/t/p/w500${profile_path}`
-                    : 'https://cdn4.iconfinder.com/data/icons/ui-beast-4/32/Ui-12-512.png'
-                }
-                alt={name}
-                width="100"
-              />
-              <h4>{name}</h4>
-              <h4>{character}</h4>
-            </li>
-          );
-        })}
-      </ul>
+      {movieCast.length > 0 ? (
+        <ul>
+          {movieCast.map(({ id, name, profile_path, character }) => {
+            return (
+              <li key={id}>
+                <img
+                  src={
+                    profile_path
+                      ? `https://image.tmdb.org/t/p/w500${profile_path}`
+                      : 'https://cdn4.iconfinder.com/data/icons/ui-beast-4/32/Ui-12-512.png'
+                  }
+                  alt={name}
+                  width="100"
+                />
+                <h4>{name}</h4>
+                <h4>{character}</h4>
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <p>We don't have any reviews for this movie</p>
+      )}
     </>
   );
 };

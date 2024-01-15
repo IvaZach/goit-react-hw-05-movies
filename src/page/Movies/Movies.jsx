@@ -19,6 +19,7 @@ export default function Movies() {
       try {
         setLoading(true);
         setError(false);
+        if (queryMovie === '') return;
         const movieList = await movieSearch(queryMovie);
         setMovieList(movieList);
       } catch (error) {

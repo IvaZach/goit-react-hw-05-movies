@@ -18,8 +18,8 @@ const MovieDetails = ({ movieDetails }) => {
   const { poster_path, title, vote_average, overview, genres, release_date } =
     movieDetails;
 
-  const dateObj = new Date();
-  const year = dateObj.getUTCFullYear(release_date);
+  const dateObj = new Date(release_date);
+  const year = dateObj.getUTCFullYear();
 
   const location = useLocation();
 
@@ -37,24 +37,33 @@ const MovieDetails = ({ movieDetails }) => {
         />
         <div>
           <h2>
-            {title} ({year})
+            {title} {year > 0 ? <>({year})</> : ''}
           </h2>
-
-          <p>User Score: {vote_average}</p>
-
-          <h3>Overview</h3>
-          <p>{overview}</p>
-
-          <h3>Genres</h3>
-          <ul className={css.genres}>
-            {genres?.map(({ id, name }) => {
-              return (
-                <li key={id} className={css.genre}>
-                  {name}
-                </li>
-              );
-            })}
-          </ul>
+          {vote_average.length > 0 ? <p> User Score: {vote_average}</p> : ''}
+          {overview.length > 0 ? (
+            <>
+              <h3>Overview</h3>
+              <p>{overview}</p>
+            </>
+          ) : (
+            ''
+          )}
+          {genres.length > 0 ? (
+            <>
+              <h3>Genres</h3>
+              <ul className={css.genres}>
+                {genres?.map(({ id, name }) => {
+                  return (
+                    <li key={id} className={css.genre}>
+                      {name}
+                    </li>
+                  );
+                })}
+              </ul>
+            </>
+          ) : (
+            ''
+          )}
         </div>
       </div>
       <hr />
